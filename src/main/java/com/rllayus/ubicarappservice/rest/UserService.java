@@ -19,12 +19,13 @@ import javax.ws.rs.core.MediaType;
 /**
  * Created by Ricardo Laredo on 18/05/2017.
  */
-// The Java class will be hosted at the URI path "/helloworld"
+
 @Path("/userService")
 public class UserService {
     private static final Logger LOGGER = Logger.getLogger(UserService.class);
     @Inject
     private CoreUbicarAppService coreUbicarAppService;
+
     @POST
     @Path("/version")
     public String version(){
@@ -40,6 +41,7 @@ public class UserService {
         try {
             return this.coreUbicarAppService.login(request, requestLogin);
         }catch (Exception e){
+            LOGGER.error("ERROR al loguear",e);
             ObjectResponse<UserDto> response=new ObjectResponse<UserDto>();
             response.setError(10);
             response.setMessage("ERROR de CDI");
