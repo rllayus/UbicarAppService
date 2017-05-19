@@ -1,0 +1,50 @@
+# del proyecto actual
+
+# IDEA metadata and output
+*.iml
+*.ipr
+*.iws
+*.log
+.idea
+out
+.fuse*
+none
+
+# Eclipse
+.classpath
+.factorypath
+.project
+.settings
+.classpath
+
+# NetBeans
+nbactions.xml
+nb-configuration.xml
+profiles.xml
+nbproject
+
+# Generales
+*~
+build
+build.sh
+derby.com.mc4.api.log
+.DS_Store
+.gradle
+*.java.hsp
+jmx.com.mc4.api.log
+jxl.com.mc4.api.log
+run.sh
+*.sonarj
+*.sw*
+
+# Maven
+target
+*.releaseBackup
+
+# Atomikos
+*.epoch
+tmlog*
+ovt.iml
+
+# mac
+.DS_Store
