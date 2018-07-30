@@ -22,27 +22,15 @@ node {
    echo 'Compilando aplicación'
    sh 'mvn clean compile'
 
+//
    // ------------------------------------
    // -- ETAPA: Test
    // ------------------------------------
-   stage('build & SonarQube analysis') {
-         withSonarQubeEnv('Sonar') {
-           sh 'mvn clean package sonar:sonar'
-         }
-     }
-     stage("Quality Gate") {
-       //steps {
-         timeout(time: 1, unit: 'HOURS') {
-           waitForQualityGate abortPipeline: true
-         }
-       //}
-     }
 
 
-
-   // ------------------------------------
+   // ----------------------------------------------------------------------------------------
    // -- ETAPA: Instalar
-   // ------------------------------------
+   // -------------------------------------------------------------------------------------------
    stage 'Instalar'
    echo 'Instala el paquete generado en el repositorio maven'
    sh 'mvn install -Dmaven.test.skip=true'
