@@ -25,6 +25,14 @@ node {
    // ------------------------------------
    // -- ETAPA: Test
    // ------------------------------------
+   stage("build & SonarQube analysis") {
+               agent any
+               steps {
+                 withSonarQubeEnv('Sonar') {
+                   sh 'mvn clean package sonar:sonar'
+                 }
+               }
+             }
       stage("SonarQube Quality Gate") {
            timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
