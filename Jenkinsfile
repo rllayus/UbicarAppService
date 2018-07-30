@@ -25,11 +25,11 @@ node {
    // ------------------------------------
    // -- ETAPA: Test
    // ------------------------------------
-  stage('SonarQube analysis') {
-          withSonarQubeEnv('Sonar') {
-            sh 'mvn clean package sonar:sonar'
-          }
-      }
+  stage'SonarQube analysis'
+  withSonarQubeEnv('Sonar') {
+        sh 'mvn clean package sonar:sonar'
+  }
+
 
 
    // ------------------------------------
