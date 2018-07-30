@@ -26,15 +26,9 @@ node {
    // -- ETAPA: Test
    // ------------------------------------
   stage('SonarQube analysis') {
-        steps {
-          script {
-            // requires SonarQube Scanner 2.8+
-            scannerHome = tool 'SonarQube'
+          withSonarQubeEnv('SonarQube') {
+            sh 'mvn clean package sonar:sonar'
           }
-          withSonarQubeEnv('SonarQube Scanner') {
-            sh "${scannerHome}/bin/sonar-scanner"
-          }
-        }
       }
 
 
