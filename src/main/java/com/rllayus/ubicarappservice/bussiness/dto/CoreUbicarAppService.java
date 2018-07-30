@@ -15,10 +15,10 @@ import java.io.Serializable;
 public class CoreUbicarAppService implements Serializable {
 
     public ObjectResponse<UserDto> login(HttpServletRequest request, ObjectRequest<LoginDto> requestLogin) {
-        ObjectResponse<UserDto> response=new ObjectResponse<UserDto>();
-        response.setError(0);
-        response.setMessage("OK");
-        return response;
+        ObjectResponse<UserDto> resp=new ObjectResponse<UserDto>();
+        resp.setError(0);
+        resp.setMessage("OK");
+        return resp;
     }
 
     public ObjectResponse<Integer> saveLocations(HttpServletRequest httpRequest, ListRequest<LocationDto> request) {
