@@ -25,21 +25,20 @@ node {
    // ------------------------------------
    // -- ETAPA: Test
    // ------------------------------------
-   stage("build & SonarQube analysis") {
-               agent any
+   stage('build & SonarQube analysis') {
+       agent any
 
-                 withSonarQubeEnv('Sonar') {
-                   sh 'mvn clean package sonar:sonar'
-                 }
-
-             }
-             stage("Quality Gate") {
-               //steps {
-                 timeout(time: 1, unit: 'HOURS') {
-                   waitForQualityGate abortPipeline: true
-                 }
-               //}
-             }
+         withSonarQubeEnv('Sonar') {
+           sh 'mvn clean package sonar:sonar'
+         }
+     }
+     stage("Quality Gate") {
+       //steps {
+         timeout(time: 1, unit: 'HOURS') {
+           waitForQualityGate abortPipeline: true
+         }
+       //}
+     }
 
 
 
