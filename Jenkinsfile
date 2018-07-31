@@ -30,14 +30,14 @@ node {
                                   sh 'mvn clean package sonar:sonar'
                                 }
              }
-      stage("SonarQube Quality Gate") {
+      //stage("SonarQube Quality Gate") {
            //timeout(time: 1, unit: 'HOURS') {
-              def qg = waitForQualityGate()
-              if (qg.status != 'OK') {
-                error "Pipeline aborted due to quality gate failure: ${qg.status}"
-              }
+        //      def qg = waitForQualityGate()
+          //    if (qg.status != 'OK') {
+            //    error "Pipeline aborted due to quality gate failure: ${qg.status}"
+             // }
            //}
-       }
+       //}
 
    // ------------------------------------
    // -- ETAPA: Instalar
@@ -46,9 +46,9 @@ node {
    echo 'Instala el paquete generado en el repositorio maven'
    sh 'mvn install -Dmaven.test.skip=true'
 
-stage("Deploying"){
-sh 'mvn jboss-as:deploy'
-}
+    stage 'Deploying'
+    sh 'mvn jboss-as:deploy'
+
    // ------------------------------------
    // -- ETAPA: Archivar
    // ------------------------------------
