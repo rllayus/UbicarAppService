@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Created by Ricardo Laredo on 13/05/2017.
  */
-@ApplicationPath("/")
+//@ApplicationPath("/")
 public class UbicarAppServices extends Application {
 
     @Override

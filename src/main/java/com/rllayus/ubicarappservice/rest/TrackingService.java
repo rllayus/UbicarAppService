@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * Created by Ricardo Laredo on 13/05/2017.
  */
-@Path("/trackingService")
+//@Path("/trackingService")
 public class TrackingService {
     private static final Logger LOGGER = Logger.getLogger(TrackingService.class);
     @Inject

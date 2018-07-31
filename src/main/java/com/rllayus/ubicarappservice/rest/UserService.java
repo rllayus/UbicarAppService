@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
  * Created by Ricardo Laredo on 18/05/2017.
  */
 
-@Path("/userService")
+//@Path("/userService")
 public class UserService {
     private static final Logger LOGGER = Logger.getLogger(UserService.class);
     @Inject
