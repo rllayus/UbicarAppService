@@ -26,11 +26,9 @@ node {
    // -- ETAPA: Test
    // ------------------------------------
    stage("build & SonarQube analysis") {
-               steps {
-                 withSonarQubeEnv('SonarLocal') {
-                   sh 'mvn clean package sonar:sonar'
-                 }
-               }
+               withSonarQubeEnv('SonarLocal') {
+                                  sh 'mvn clean package sonar:sonar'
+                                }
              }
       stage("SonarQube Quality Gate") {
            timeout(time: 1, unit: 'HOURS') {
