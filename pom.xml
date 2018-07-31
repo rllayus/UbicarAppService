@@ -90,10 +90,10 @@
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>7.5.Final</version>
+                <version>7.9.Final</version>
                 <configuration>
                     <hostname>localhost</hostname>
-                    <port>9990</port>
+                    <port>9999</port>
                     <username>rlaredo</username>
                     <password>Abc123**</password>
                 </configuration>
