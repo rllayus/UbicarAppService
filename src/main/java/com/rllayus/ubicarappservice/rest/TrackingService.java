@@ -2,8 +2,6 @@ package com.rllayus.ubicarappservice.rest;
 
 import com.rllayus.ubicarappservice.bussiness.dto.CoreUbicarAppService;
 import com.rllayus.ubicarappservice.bussiness.dto.LocationDto;
-import com.rllayus.ubicarappservice.bussiness.dto.UserDto;
-import com.rllayus.ubicarappservice.rest.request.HeaderRequest;
 import com.rllayus.ubicarappservice.rest.request.ListRequest;
 import com.rllayus.ubicarappservice.rest.responce.ObjectResponse;
 import org.apache.log4j.Logger;
