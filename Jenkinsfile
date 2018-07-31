@@ -22,30 +22,31 @@ node {
    echo 'Compilando aplicación'
    sh 'mvn clean compile'
 
-
-//
    // ------------------------------------
    // -- ETAPA: Test
    // ------------------------------------
+   stage("build & SonarQube analysis") {
+               agent any
+               steps {
+                 withSonarQubeEnv('SonarLocal') {
+                   sh 'mvn clean package sonar:sonar'
+                 }
+               }
+             }
+      stage("SonarQube Quality Gate") {
+           timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+           }
+       }
 
-stage("SonarQube") {
-        steps {
-            script {
-                try {
-                    echo "Analizing the project with SonarQube."
-                    withSonarQubeEnv("Sonar Server") {
-                        sh "mvn sonar:sonar"
-                    }
-                } catch (err) {
-                    echo "The SonarQube analysis failed"
-                }
-            }
-        }
-    }
 
-   // ----------------------------------------------------------------------------------------
+
+   // ------------------------------------
    // -- ETAPA: Instalar
-   // -------------------------------------------------------------------------------------------
+   // ------------------------------------
    stage 'Instalar'
    echo 'Instala el paquete generado en el repositorio maven'
    sh 'mvn install -Dmaven.test.skip=true'
