@@ -30,7 +30,6 @@ public class TrackingService {
     @Path("/saveLocations")
     public ObjectResponse<Integer> saveLocations(@Context HttpServletRequest httpRequest, ListRequest<LocationDto> request){
         LOGGER.info("Lista de localizaciones recibidas con :"+request.getValues().size());
-        int a = 1/0;
         return this.coreAppHomeService.saveLocations(httpRequest,request);
     }
 
