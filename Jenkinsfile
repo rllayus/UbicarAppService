@@ -28,19 +28,20 @@ node {
    // -- ETAPA: Test
    // ------------------------------------
 
-   stage('build & SonarQube analysis') {
-         withSonarQubeEnv('Sonar') {
-           sh 'mvn clean package sonar:sonar'
-         }
-   }
-
-   stage("Quality Gate") {
-       //steps {
-         timeout(time: 1, unit: 'HOURS') {
-           waitForQualityGate abortPipeline: true
-         }
-       //}
-     }
+stage("SonarQube") {
+        steps {
+            script {
+                try {
+                    echo "Analizing the project with SonarQube."
+                    withSonarQubeEnv("Sonar Server") {
+                        sh "mvn sonar:sonar"
+                    }
+                } catch (err) {
+                    echo "The SonarQube analysis failed"
+                }
+            }
+        }
+    }
 
    // ----------------------------------------------------------------------------------------
    // -- ETAPA: Instalar
