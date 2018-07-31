@@ -26,7 +26,6 @@ node {
    // -- ETAPA: Test
    // ------------------------------------
    stage("build & SonarQube analysis") {
-               agent any
                steps {
                  withSonarQubeEnv('SonarLocal') {
                    sh 'mvn clean package sonar:sonar'
