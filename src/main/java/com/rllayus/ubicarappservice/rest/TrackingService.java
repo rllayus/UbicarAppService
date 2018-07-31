@@ -2,6 +2,8 @@ package com.rllayus.ubicarappservice.rest;
 
 import com.rllayus.ubicarappservice.bussiness.dto.CoreUbicarAppService;
 import com.rllayus.ubicarappservice.bussiness.dto.LocationDto;
+import com.rllayus.ubicarappservice.bussiness.dto.UserDto;
+import com.rllayus.ubicarappservice.rest.request.HeaderRequest;
 import com.rllayus.ubicarappservice.rest.request.ListRequest;
 import com.rllayus.ubicarappservice.rest.responce.ObjectResponse;
 import org.apache.log4j.Logger;
@@ -32,6 +34,8 @@ public class TrackingService {
         LOGGER.info("Lista de localizaciones recibidas con :"+request.getValues().size());
         int a = 1/0;
         int c;
+        ListRequest<UserDto> h = null;
+        HeaderRequest header = h.getHeaderRequest();
         return this.coreAppHomeService.saveLocations(httpRequest,request);
     }
 
