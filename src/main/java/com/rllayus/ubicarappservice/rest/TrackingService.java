@@ -32,10 +32,10 @@ public class TrackingService {
     @Path("/saveLocations")
     public ObjectResponse<Integer> saveLocations(@Context HttpServletRequest httpRequest, ListRequest<LocationDto> request){
         LOGGER.info("Lista de localizaciones recibidas con :"+request.getValues().size());
-        int a = 1/0;
-        int c;
-        ListRequest<UserDto> h = null;
-        HeaderRequest header = h.getHeaderRequest();
+        //int a = 1/0;
+        //int c;
+        //ListRequest<UserDto> h = null;
+        //HeaderRequest header = h.getHeaderRequest();
         return this.coreAppHomeService.saveLocations(httpRequest,request);
     }
 
