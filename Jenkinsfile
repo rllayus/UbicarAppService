@@ -47,6 +47,7 @@ node {
    sh 'mvn install -Dmaven.test.skip=true'
 
     stage 'Deploying'
+    echo 'Desplegando en el servidor Jboss EAP 6.4'
     sh 'mvn jboss-as:deploy'
 
    // ------------------------------------
