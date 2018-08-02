@@ -8,6 +8,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Welcome Jenkins + Sonar + Jboss EAP 6.4 Demo MC4</h1>
+        <h1>Welcome Jenkins + Sonar + Jboss EAP 6.4 de MC4</h1>
     </body>
 </html>
