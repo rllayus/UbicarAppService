@@ -42,12 +42,7 @@ pipeline {
                             withSonarQubeEnv('SonarLocal') {
                                 sh 'mvn clean package sonar:sonar'
                             }
-                            timeout(time: 1, unit: 'MINUTES') {
-                                def qg = waitForQualityGate()
-                                if (qg.status != 'OK') {
-                                    error "Pipeline abortada debido a una falla en la calidad de codigo: ${qg.status}"
-                                }
-                            }
+
                         }
 \
                     }
