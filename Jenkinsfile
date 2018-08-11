@@ -42,9 +42,6 @@ pipeline {
                             withSonarQubeEnv('SonarLocal') {
                                 sh 'mvn clean package sonar:sonar'
                             }
-                        }
-
-                        step {
                             timeout(time: 1, unit: 'MINUTES') {
                                 def qg = waitForQualityGate()
                                 if (qg.status != 'OK') {
@@ -52,6 +49,7 @@ pipeline {
                                 }
                             }
                         }
+\
                     }
                     post {
                         always {
