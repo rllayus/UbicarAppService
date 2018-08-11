@@ -37,17 +37,19 @@ pipeline {
                     agent{
                         label "SonarQu"
                     }
-                    step {
-                        withSonarQubeEnv('SonarLocal') {
-                            sh 'mvn clean package sonar:sonar'
+                    steps {
+                        step {
+                            withSonarQubeEnv('SonarLocal') {
+                                sh 'mvn clean package sonar:sonar'
+                            }
                         }
-                    }
 
-                    step{
-                        timeout(time: 1, unit: 'MINUTES') {
-                            def qg = waitForQualityGate()
-                            if (qg.status != 'OK') {
-                                error "Pipeline abortada debido a una falla en la calidad de codigo: ${qg.status}"
+                        step {
+                            timeout(time: 1, unit: 'MINUTES') {
+                                def qg = waitForQualityGate()
+                                if (qg.status != 'OK') {
+                                    error "Pipeline abortada debido a una falla en la calidad de codigo: ${qg.status}"
+                                }
                             }
                         }
                     }
