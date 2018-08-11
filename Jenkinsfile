@@ -3,7 +3,6 @@ pipeline {
     agent any
     stages {
         stage('Descargando código de SCM'){
-            echo 'Descargando código de SCM'
             steps{
                 sh 'rm -rf *'
                 checkout scm
@@ -12,7 +11,6 @@ pipeline {
 
 
         stage('Building') {
-            echo 'Compilando '
             steps {
                 sh 'code/referred-client'
                 sh 'mvn clean compile'
