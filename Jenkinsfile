@@ -37,11 +37,8 @@ pipeline {
                         label "SonarQu"
                     }
                     steps {
-                        step {
-                            withSonarQubeEnv('SonarLocal') {
-                                sh 'mvn clean package sonar:sonar'
-                            }
-
+                        withSonarQubeEnv('SonarLocal') {
+                            sh 'mvn clean package sonar:sonar'
                         }
 \
                     }
