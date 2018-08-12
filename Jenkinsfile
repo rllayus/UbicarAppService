@@ -1,5 +1,9 @@
 #!groovy
 pipeline {
+    environment {
+        def mvnHome = tool 'MVN3'
+        env.PATH = "${mvnHome}/bin:${env.PATH}"
+    }
     agent any
     stages {
         stage('Descargando código de SCM'){
@@ -12,8 +16,6 @@ pipeline {
 
         stage('Building') {
             steps {
-                def mvnHome = tool 'MVN3'
-                env.PATH = "${mvnHome}/bin:${env.PATH}"
                 sh 'mvn clean compile'
             }
         }
