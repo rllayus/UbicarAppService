@@ -12,7 +12,6 @@ pipeline {
 
         stage('Building') {
             steps {
-                sh 'code/referred-client'
                 sh 'mvn clean compile'
             }
         }
@@ -24,7 +23,7 @@ pipeline {
                         label "JUnit"
                     }
                     steps{
-
+                        sh 'mvn clean compile'
                     }
                     post {
                         always {
