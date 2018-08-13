@@ -1,9 +1,6 @@
 #!groovy
 pipeline {
-    environment {
-        #!def mvnHome = tool 'MVN3'
-        #!env.PATH = "${mvnHome}/bin:${env.PATH}"
-    }
+
     agent any
     tools {
         maven 'MVN3'
