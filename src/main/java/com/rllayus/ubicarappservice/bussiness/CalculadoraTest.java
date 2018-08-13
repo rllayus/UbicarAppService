@@ -7,6 +7,7 @@ import org.junit.Test;
  * Created by Ricardo Laredo on 12-08-18.
  */
 public class CalculadoraTest  {
+    /*
     @Test
     public void testSuma() throws Exception {
         Calculadora suma = new Calculadora();
@@ -21,6 +22,7 @@ public class CalculadoraTest  {
         TestCase.assertEquals(10, resultado);
     }
 
+*/
 
 
 }
