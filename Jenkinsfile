@@ -27,11 +27,7 @@ pipeline {
                     steps{
                         sh 'mvn clean compile'
                     }
-                    post {
-                        always {
-                            junit 'reports/**/*.xml'
-                        }
-                    }
+
                 }
 
                 stage('SonarQu'){

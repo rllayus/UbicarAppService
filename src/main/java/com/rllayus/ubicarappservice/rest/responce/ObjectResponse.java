@@ -1,8 +1,5 @@
 package com.rllayus.ubicarappservice.rest.responce;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.io.Serializable;
 
 public class ObjectResponse<T> implements Serializable{
