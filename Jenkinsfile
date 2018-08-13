@@ -40,7 +40,12 @@ pipeline {
                     }
                     post {
                         always {
-                            junit "**/TEST-*.xml"
+                            timeout(time: 1, unit: 'MINUTES') {
+                                qg = waitForQualityGate()
+                                if (qg.status != 'OK') {
+                                    error "Pipeline abortada debido a una falla en la calidad de codigo: ${qg.status}"
+                                }
+                            }
                         }
                     }
                 }
