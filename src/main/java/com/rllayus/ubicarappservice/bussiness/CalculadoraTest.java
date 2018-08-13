@@ -17,8 +17,8 @@ public class CalculadoraTest  {
     @Test
     public void testMultiplicacion() throws Exception {
         Calculadora suma = new Calculadora();
-        double resultado = suma.multiplicacion(2,5);
-        TestCase.assertEquals(10.0, resultado);
+        long resultado = suma.multiplicacion(2,5);
+        TestCase.assertEquals(10, resultado);
     }
 
 

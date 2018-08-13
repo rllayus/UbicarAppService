@@ -31,7 +31,6 @@ pipeline {
                 }
 
                 stage('SonarQu'){
-
                     steps {
                         withSonarQubeEnv('SonarLocal') {
                             sh 'mvn clean package sonar:sonar'
@@ -58,6 +57,7 @@ pipeline {
                 sh 'mvn jboss-as:deploy'
             }
         }
+
         stage('Archivar') {
             steps {
                 step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true])
