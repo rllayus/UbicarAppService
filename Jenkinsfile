@@ -23,9 +23,7 @@ pipeline {
         stage('Analysis'){
             parallel{
                 stage('Junit'){
-                    agent{
-                        label "JUnit"
-                    }
+
                     steps{
                         sh 'mvn clean compile'
                     }
@@ -37,9 +35,7 @@ pipeline {
                 }
 
                 stage('SonarQu'){
-                    agent{
-                        label "SonarQu"
-                    }
+
                     steps {
                         withSonarQubeEnv('SonarLocal') {
                             sh 'mvn clean package sonar:sonar'
