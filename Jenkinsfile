@@ -6,8 +6,8 @@ pipeline {
         maven 'MVN3'
     }
     stages {
-        stage('Descargando código de SCM'){
-            steps{
+        stage('Descargando código de SCM') {
+            steps {
                 sh 'rm -rf *'
                 checkout scm
             }
@@ -20,17 +20,17 @@ pipeline {
             }
         }
 
-        stage('Analysis'){
-            parallel{
-                stage('Junit'){
+        stage('Analysis') {
+            parallel {
+                stage('Junit') {
 
-                    steps{
+                    steps {
                         sh 'mvn test'
                     }
 
                 }
 
-                stage('SonarQu'){
+                stage('SonarQu') {
                     steps {
                         withSonarQubeEnv('SonarLocal') {
                             sh 'mvn clean package sonar:sonar'
@@ -46,12 +46,13 @@ pipeline {
         stage("Quality Gate") {
             when {
                 branch 'master'  //only run these steps on the master branch
-                steps {
-                    timeout(time: 1, unit: 'HOURS') {
-                        waitForQualityGate abortPipeline: true
-                    }
+            }
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
+
         }
 
 
