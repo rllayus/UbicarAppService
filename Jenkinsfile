@@ -10,11 +10,12 @@ pipeline {
             steps {
                 sh 'rm -rf *'
                 checkout scm
+                label
             }
         }
 
 
-        stage('Building') {
+        stage('Building branch: ') {
             steps {
                 sh 'mvn clean compile'
             }
@@ -66,6 +67,14 @@ pipeline {
             steps {
                 step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true])
             }
+        }
+    }
+    post {
+        failure {
+            // notify users when the Pipeline fails
+            mail to: 'rllayus@gmail.com',
+                    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                    body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }
