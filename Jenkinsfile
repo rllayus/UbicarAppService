@@ -14,7 +14,7 @@ pipeline {
         }
 
 
-        stage('Building branch: ') {
+        stage("Building branch: ${branch}") {
             steps {
                 sh 'mvn clean compile'
             }
