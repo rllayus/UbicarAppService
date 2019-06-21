@@ -10,7 +10,6 @@ pipeline {
             steps {
                 sh 'rm -rf *'
                 checkout scm
-                label
             }
         }
 
