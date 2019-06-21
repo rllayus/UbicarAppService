@@ -14,7 +14,7 @@ pipeline {
         }
 
 
-        stage("Building branch: ${branch}") {
+        stage("Building") {
             steps {
                 sh 'mvn clean compile'
             }
@@ -67,6 +67,20 @@ pipeline {
                 step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true])
             }
         }
+
+        stage('Example') {
+            input {
+                message "Can we Proceed?"
+                ok "Yes"
+                submitter "Digital Varys"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'DigiralVarys', description: 'Member')
+                }
+            }
+            steps {
+                echo "${PERSON}, is proceeding..."
+            }
+        }
     }
     post {
         failure {
@@ -75,5 +89,6 @@ pipeline {
                     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                     body: "Something is wrong with ${env.BUILD_URL}"
         }
+
     }
 }
