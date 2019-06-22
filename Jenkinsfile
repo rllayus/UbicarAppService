@@ -1,7 +1,8 @@
 #!groovy
 pipeline {
-
     agent any
+    environment {
+    }
     tools {
         maven 'MVN3'
     }
@@ -58,7 +59,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'mvn wildfly:deploy'
+                sh "mvn wildfly:deploy -Dwildfly-hostname=${SERVER_QA_HOSTNAME} -Dwildfly-port=${SERVER_QA_PORT_ADMIN} -Dwildfly-username=rlaredo -Dwildfly-password=Abc123**"
             }
         }
 
@@ -80,7 +81,9 @@ pipeline {
         success{
             mail to: 'rllayus@gmail.com',cc:"rlaredo@mc4.com.bo,mquispe@mc4.com.bo",charset: "UTF-8",
                     subject: ": ${currentBuild.fullDisplayName}",
-                    body: "La aplicación se ejecuto exitosamente ${env.BUILD_URL}"
+                    body: "La aplicación se ejecuto exitosamente" +
+                            "" +
+                            " ${env.BUILD_URL}"
         }
 
     }
