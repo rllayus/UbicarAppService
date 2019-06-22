@@ -4,6 +4,9 @@ pipeline {
     tools {
         maven 'MVN3'
     }
+    environment {
+        SERVER_QA_CREDENTIAL = credentials('server.qa.credential')
+    }
     stages {
         stage('Descargando código de SCM') {
             steps {
@@ -57,7 +60,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh "mvn wildfly:deploy -Dwildfly-hostname=${env.SERVER_QA_HOSTNAME} -Dwildfly-port=${env.SERVER_QA_PORT_ADMIN} -Dwildfly-username=rlaredo -Dwildfly-password=Abc123**"
+                sh "mvn wildfly:deploy -Dwildfly-hostname=${env.SERVER_QA_HOSTNAME} -Dwildfly-port=${env.SERVER_QA_PORT_ADMIN} -Dwildfly-username=${env.SERVER_QA_CREDENTIAL_USR} -Dwildfly-password=${env.SERVER_QA_CREDENTIAL_PSW}"
             }
         }
 
