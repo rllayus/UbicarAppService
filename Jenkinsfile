@@ -58,7 +58,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'mvn jboss-as:deploy'
+                sh 'mvn wildfly:deploy'
             }
         }
 
@@ -68,26 +68,19 @@ pipeline {
             }
         }
 
-        stage('Example') {
-            input {
-                message "Can we Proceed?"
-                ok "Yes"
-                submitter "Digital Varys"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'DigiralVarys', description: 'Member')
-                }
-            }
-            steps {
-                echo "${PERSON}, is proceeding..."
-            }
-        }
+
     }
     post {
         failure {
-            // notify users when the Pipeline fails
-            mail to: 'rllayus@gmail.com',
-                    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+            mail to: 'rllayus@gmail.com',cc:"rlaredo@mc4.com.bo,mquispe@mc4.com.bo",charset: "UTF-8",
+                    subject: ": ${currentBuild.fullDisplayName}",
                     body: "Something is wrong with ${env.BUILD_URL}"
+        }
+
+        success{
+            mail to: 'rllayus@gmail.com',cc:"rlaredo@mc4.com.bo,mquispe@mc4.com.bo",charset: "UTF-8",
+                    subject: ": ${currentBuild.fullDisplayName}",
+                    body: "La aplicación se ejecuto exitosamente ${env.BUILD_URL}"
         }
 
     }
