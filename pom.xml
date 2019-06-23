@@ -106,7 +106,12 @@
                     <port>${wildfly-port}</port>
                     <username>${wildfly-username}</username>
                     <password>${wildfly-password}</password>
+                    <server-groups>
+                        <server-group>cluster-server-group</server-group>
+                    </server-groups>
                 </configuration>
+
+
 
             </plugin>
             <plugin>
