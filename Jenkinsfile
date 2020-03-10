@@ -32,7 +32,7 @@ pipeline {
 
                 stage('SonarQu') {
                     steps {
-                        withSonarQubeEnv('SonarLocal') {
+                        withSonarQubeEnv('SonarQube') {
                             sh 'mvn clean package sonar:sonar'
                         }
                     }
@@ -58,7 +58,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'mvn jboss-as:deploy'
+                sh 'mvn jboss:deploy -Djboss-hostname=${env.SERVER_DEV_SFE_HOSTNAME} -Djboss-port=${env.SERVER_DEV_SFE_PORT_ADMIN} -Djboss-username=${env.SERVER_DEV_SFE_CREDENTIAL_USR} -Djboss-password=${env.SERVER_DEV_SFE_CREDENTIAL_PSW}'
             }
         }
 
@@ -68,4 +68,21 @@ pipeline {
             }
         }
     }
+
+    post {
+            failure {
+                mail to: 'rlaredo@mc4.com.bo', cc: "rchipana@mc4.com.bo, fmontero@mc4.com.bo", charset: "UTF-8",
+                        subject: ": ${currentBuild.fullDisplayName}  : ${env.PROJECT_NAME} - Build# ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}",
+                        body: "Se genero un error al ejecutor de tareas de jenkins. ${env.BUILD_URL}"
+            }
+    
+            success {
+                mail to: 'rlaredo@mc4.com.bo', cc: "rchipana@mc4.com.bo, fmontero@mc4.com.bo", charset: "UTF-8",
+                        subject: " ${currentBuild.fullDisplayName} :  ${env.PROJECT_NAME} - Build# ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}",
+                        body: "La aplicación se ejecutó exitosamente" +
+                                "" +
+                                " ${env.BUILD_URL}"
+            }
+
+        }
 }
