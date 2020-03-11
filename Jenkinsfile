@@ -48,7 +48,7 @@ pipeline {
 
         stage("Quality Gate") {
             when {
-                branch 'master'  //only run these steps on the master branch
+                branch 'dev'  //only run these steps on the master branch
             }
             steps {
                 timeout(time: 1, unit: 'HOURS') {

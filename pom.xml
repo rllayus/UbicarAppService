@@ -12,8 +12,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jboss-home>/opt/jboss-eap.7.2</jboss-home>
-        <jboss-hostname>https://10.0.6.10</jboss-hostname>
+        <jboss-hostname>localhost</jboss-hostname>
         <jboss-port>8443</jboss-port>
         <jboss-username>admin</jboss-username>
         <jboss-password>Abc123**</jboss-password>
