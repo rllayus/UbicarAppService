@@ -58,7 +58,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'mvn jboss:deploy -Djboss-hostname=${env.SERVER_DEV_SFE_HOSTNAME} -Djboss-port=${env.SERVER_DEV_SFE_PORT_ADMIN} -Djboss-username=${env.SERVER_DEV_SFE_CREDENTIAL_USR} -Djboss-password=${env.SERVER_DEV_SFE_CREDENTIAL_PSW}'
+                sh 'mvn wildfly:deploy -Dwildfly-hostname=${env.SERVER_DEV_SFE_HOSTNAME} -Dwildfly-port=${env.SERVER_DEV_SFE_PORT_ADMIN} -Dwildfly-username=${env.SERVER_DEV_SFE_CREDENTIAL_USR} -Dwildfly-password=${env.SERVER_DEV_SFE_CREDENTIAL_PSW}'
             }
         }
 
