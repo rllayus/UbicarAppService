@@ -12,6 +12,12 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jboss-home>/opt/jboss-eap.7.2</jboss-home>
+        <jboss-hostname>https://10.0.6.10</jboss-hostname>
+        <jboss-port>8443</jboss-port>
+        <jboss-username>admin</jboss-username>
+        <jboss-password>Abc123**</jboss-password>
+
     </properties>
 
     <dependencies>
@@ -97,6 +103,10 @@
                 <version>2.0.0.Final</version>
                 <configuration>
                     <filename>${project.build.finalName}.war</filename>
+                    <hostname>${jboss-hostname}</hostname>
+                    <port>${jboss-port}</port>
+                    <username>${jboss-username}</username>
+                    <password>${jboss-password}</password>
                 </configuration>
             </plugin>
             <plugin>
