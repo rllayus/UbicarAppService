@@ -5,6 +5,9 @@ pipeline {
     tools {
         maven 'MVN3'
     }
+    environment {
+            SERVER_DEV_SFE_CREDENTIAL = credentials('server.sfe.credential')
+        }
     stages {
         stage('Descargando código de SCM') {
             steps {
