@@ -59,11 +59,11 @@ pipeline {
         }
 
 
-        stage('Deploy') {
-            steps {
-                sh "mvn wildfly:deploy -Djboss-hostname=${env.SERVER_DEV_SFE_HOSTNAME} -Djboss-port=${env.SERVER_DEV_SFE_PORT_ADMIN} -Djboss-username=${env.SERVER_DEV_SFE_CREDENTIAL_USR} -Dwjboss-password=${env.SERVER_DEV_SFE_CREDENTIAL_PSW}"
-            }
-        }
+//         stage('Deploy') {
+//             steps {
+//                 sh "mvn wildfly:deploy -Djboss-hostname=${env.SERVER_DEV_SFE_HOSTNAME} -Djboss-port=${env.SERVER_DEV_SFE_PORT_ADMIN} -Djboss-username=${env.SERVER_DEV_SFE_CREDENTIAL_USR} -Dwjboss-password=${env.SERVER_DEV_SFE_CREDENTIAL_PSW}"
+//             }
+//         }
 
         stage('Setup OWASP') {
             steps {
