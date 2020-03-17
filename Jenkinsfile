@@ -65,6 +65,21 @@ pipeline {
             }
         }
 
+        stage('Setup OWASP') {
+            steps {
+                script {
+                    startZap(host: 127.0.0.1, port: 8082, timeout:500, zapHome: "/opt/zap", sessionPath:"/home/ic_server/session.session", allowedHosts:['https://clic.mc4.com.bo:8443/clic/']) // Start ZAP at /opt/zaproxy/zap.sh, allowing scans on github.com
+                }
+            }
+        }
+        stage('Build & Test') {
+            steps {
+                script {
+                    sh "mvn verify -Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8082 -Dhttps.proxyHost=127.0.0.1 -Dhttps.proxyPort=8082" // Proxy tests through ZAP
+                }
+            }
+        }
+
         stage('Archivar') {
             steps {
                 step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true])
