@@ -68,7 +68,7 @@ pipeline {
         stage('Setup OWASP') {
             steps {
                 script {
-                    startZap(host: 127.0.0.1, port: 8082, timeout:500, zapHome: "/opt/zap", sessionPath:"/home/ic_server/session.session", allowedHosts:['https://clic.mc4.com.bo:8443/clic/']) // Start ZAP at /opt/zaproxy/zap.sh, allowing scans on github.com
+                    startZap(host:"127.0.0.1", port: 8082, timeout:500, zapHome: "/opt/zap", sessionPath:"/home/ic_server/session.session", allowedHosts:['https://clic.mc4.com.bo:8443/clic/']) // Start ZAP at /opt/zaproxy/zap.sh, allowing scans on github.com
                 }
             }
         }
