@@ -45,7 +45,6 @@
     </dependencies>
 
     <build>
-        <finalName>UbicarAppService</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
